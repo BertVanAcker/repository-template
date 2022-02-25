@@ -14,7 +14,7 @@
 
 from setuptools import find_packages, setup
 
-from scripts.build_params import __description__, __license__, __author__, __platform__, __download_url, __app_name__, \
+from .scripts.build_params import __description__, __license__, __author__, __platform__, __download_url, __app_name__, \
     __author_email, __long_description, __install_requirements__, __python_supported_version__
 from scripts.version import __version__
 
