@@ -42,8 +42,9 @@ jobs:
 
       - name: Run unit tests
         run: |
-          cd scripts #PACKAGE-NAME/scripts
-          chmod +x run_tests.sh
-          ./run_tests.sh
+          python -m pytest --import-mode=append tests/
+          #cd scripts #PACKAGE-NAME/scripts
+          #chmod +x run_tests.sh
+          #./run_tests.sh
 
 

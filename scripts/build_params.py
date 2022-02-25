@@ -41,11 +41,11 @@ def load_long_description():
     return long_description
 
 __app_name__ = 'PACKAGE-NAME'
-__description__ = 'it is a CLI program used to generate private and public keys by provided algorithms.'
+__description__ = 'This is a template-repository description.'
 __author__ = 'Bert Van Acker(B.MKR)'
-__author_email = 'thiagoolsilva@gmail.com'
-__license__ = 'https://github.com/thiagoolsilva/cryptography-cli/blob/main/LICENSE'
-__download_url = 'https://github.com/thiagoolsilva/cryptography-cli'
+__author_email = 'bva.bmkr@gmail.com'
+__license__ = 'https://github.com/BertVanAcker/repository-template/blob/main/LICENSE'
+__download_url = 'https://github.com/BertVanAcker/repository-template'
 __platform__ = 'any'
 __long_description = ''#load_long_description()
 __install_requirements__ = load_install_requirements()
