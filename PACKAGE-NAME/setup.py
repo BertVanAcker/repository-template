@@ -28,7 +28,7 @@ setup(
     author=__author__,
     author_email=__author_email,
     description=__description__,
-    long_description=__long_description,
+    #long_description=__long_description,
     url=__download_url,
     download_url=__download_url,
     install_requires=__install_requirements__,
