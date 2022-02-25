@@ -47,6 +47,6 @@ __author_email = 'thiagoolsilva@gmail.com'
 __license__ = 'https://github.com/thiagoolsilva/cryptography-cli/blob/main/LICENSE'
 __download_url = 'https://github.com/thiagoolsilva/cryptography-cli'
 __platform__ = 'any'
-__long_description = load_long_description()
+__long_description = ''#load_long_description()
 __install_requirements__ = load_install_requirements()
 __python_supported_version__='>=3.5'
