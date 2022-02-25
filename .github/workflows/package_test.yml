@@ -14,27 +14,32 @@ env:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: true
-      matrix:
-        os: ["ubuntu-latest"]     #["ubuntu-latest", "windows-latest", "macos-latest"]
-        python-version: ["3.8"]   #["3.7", "3.8", "3.9"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - name: Checkout $PACKAGE
+      - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: Setup python
+      # Setup Python (faster than using Python container)
+      - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-          architecture: x64
+          python-version: "3.x"
 
-      - name: Install
+      - name: Install pipenv
         run: |
-          pip install -e .
-          pip install -r requirements.txt          
+          python -m pip install --upgrade pipenv wheel
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
 
-      - name: Run tests
-        run: pytest
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
+      - name: Run test suite
+        run: |
+          pipenv run test -v
