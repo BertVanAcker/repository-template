@@ -36,15 +36,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          #cd PACKAGE-NAME
           pip install -r requirements.txt
           pip install -e .
 
       - name: Run unit tests
         run: |
           python -m pytest --import-mode=append tests/
-          #cd scripts #PACKAGE-NAME/scripts
-          #chmod +x run_tests.sh
-          #./run_tests.sh
 
 

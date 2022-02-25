@@ -13,24 +13,47 @@
 #  limitations under the License.
 
 from setuptools import find_packages, setup
+import pathlib
+import pkg_resources
+import os
+from os.path import dirname, abspath
+from pathlib import Path
 
-from scripts.build_params import __description__, __license__, __author__, __platform__, __download_url, __app_name__, \
-    __author_email, __long_description, __install_requirements__, __python_supported_version__
-from scripts.version import __version__
+from version import __version__
+
+def load_install_requirements():
+    requirements_name = 'requirements.txt'
+
+    with pathlib.Path(requirements_name).open() as requirements_txt:
+        install_requires = [
+            str(requirement)
+            for requirement
+            in pkg_resources.parse_requirements(requirements_txt)
+        ]
+    return install_requires
+
+def load_long_description():
+    project_path = os.path.dirname(os.getcwd())
+    current_directory = Path(project_path).parent
+    readme_name = 'README.rst'
+
+    with open(os.path.join(current_directory, readme_name), encoding='utf-8') as f:
+        long_description = f.read()
+    return long_description
 
 setup(
-    name=__app_name__,
+    name='PACKAGE-NAME',
     version=__version__,
     packages=find_packages(),
     include_package_data=True,
-    license=__license__,
-    platforms=__platform__,
-    author=__author__,
-    author_email=__author_email,
-    description=__description__,
+    license='https://github.com/BertVanAcker/repository-template/blob/main/LICENSE',
+    platforms='any',
+    author='Bert Van Acker(B.MKR)',
+    author_email='bva.bmkr@gmail.com',
+    description='This is a template-repository description.',
     #long_description=__long_description,
-    url=__download_url,
-    download_url=__download_url,
-    install_requires=__install_requirements__,
-    python_requires=__python_supported_version__
+    url='https://github.com/BertVanAcker/repository-template',
+    download_url='https://github.com/BertVanAcker/repository-template',
+    install_requires=load_install_requirements(),
+    python_requires='>=3.5'
 )
